@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!--
+                <style type="text/css">
+        
+                    /* Por tag */
+                    table
+                    {
+                        border: solid;
+                        font-family: fantasy ; 
+                    }
+                    p{
+                        margin-left: 40px;
+                    }
+        
+                    /* Por classe definido pelo .(ponto) */
+                    .meuTexto{
+                        font-family: monospace ; 
+                        font-size: 15pt;
+                    }
+                    .fundo{
+                        background-color: #63846d;
+                    }
+                    
+                    /* por identificador  */ 
+                    #paragrafo{
+                        padding: 10px ; 
+                    }
+        
+        
+                </style>
+        
+        -->
+
+
+        <style type="text/css">
+
+
+            table{
+                margin-top: 50px;
+                background-color: #0E5D30;
+                padding: 50px;
+                border-radius: 20px;
+            }
+
+            .form{
+
+                font-family: monospace;
+                color: #FFF;
+                font-weight: bolder;
+
+            }
+
+
+
+            #txtLogin{
+                font-size: 20pt;
+                text-align: center;
+            }
+
+            #botao{
+
+                width: 100%;
+                border-radius: 5px;
+                height: 40px;
+                color: #FFF;
+                font-size: 16pt;
+                font-weight: bolder;
+                background-color: #063319;
+               
+
+            }
+
+        </style>
+
+
+
+
+
+        <form action="./login.do" method="post" class="form" >
+
+            <center> 
+
+                <table> 
+                    <tr>
+                        <td>
+                            <img src="resources/imagens/user.png"   />
+                        </td>
+                        <td id="txtLogin">
+                            <h2>Login</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Usuário:</td><td> <input type="text" name="usuario" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Senha:</td> <td><input type="password" name="senha" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input id="botao" type="submit" value="Login" />
+                        </td>
+                    </tr>
+
+                </table>
+
+            </center>
+
+
+            <!-- 
+            <table>
+                <tr>
+                    <td>teste</td>
+                </tr>
+            </table>
+
+        </form>
+
+        <p class="meuTexto fundo" id="paragrafo" style="background-color: yellow;">
+            teste de estilo
+        </p>
+
+            -->
+
+
+    </body>
+</html>
