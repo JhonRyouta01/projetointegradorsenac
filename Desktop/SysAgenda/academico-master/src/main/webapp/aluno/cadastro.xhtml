@@ -16,28 +16,44 @@
 
 
                 <p:fieldset legend="Cadastro Aluno">
-
-                    <p:panelGrid columns="3">
-
-                        <p:outputLabel value="Código" for="codigo" />
-                        <p:inputText id="codigo" value="" readonly="true" />
-                        <p:message for="codigo" />
-
-                        <p:outputLabel value="Nome:" for="nome" />
-                        <p:inputText id="nome" value="" required="true" />
-                        <p:message for="nome" />
-
-
-
+                    
+                    <p:panelGrid columns="3" id="painel">
+                        <p:outputLabel value="Código" for="codigo"/>
+                        <p:inputText id="codigo" value="#{alunoBean.aluno.id}" readonly="true"/>
+                        <p:message for="codigo"/>
+                        
+                        <p:outputLabel value="Nome:" for="nome"/>
+                        <p:inputText id="nome" value="#{alunoBean.aluno.nome}" required="true"/>
+                        <p:message for="nome"/>
+                        
+                        <p:outputLabel value="Cidade:" for="cidade"/>
+                        <p:inputText id="cidade" value="#{alunoBean.aluno.cidade}" required="true"/>
+                        <p:message for="cidade"/>
+                        
+                        <p:outputLabel value="E-mail:" for="email"/>
+                        <p:inputText id="email" value="#{alunoBean.aluno.email}" required="true"/>
+                        <p:message for="email"/>
+                        
+                        <p:outputLabel value="CPF:" for="cpf"/>
+                        <p:inputText id="cpf" value="#{alunoBean.aluno.cpf}" required="true"/>
+                        <p:message for="cpf"/>
+                        
+                        <p:outputLabel value="Endereço:" for="endereco"/>
+                        <p:inputText id="endereco" value="#{alunoBean.aluno.endereco}" required="true"/>
+                        <p:message for="endereco"/>
+                        
+                        <p:outputLabel value="Numero:" for="numero"/>
+                        <p:inputText id="numero" value="#{alunoBean.aluno.numero}" required="true"/>
+                        <p:message for="numero"/>
+                        
+                        
+                    
                     </p:panelGrid>
-
-
-
-
+                    
                 </p:fieldset>
 
                 
-                <p:commandButton value="Salvar" ajax="false" />
+                <p:commandButton value="Salvar" update="painel" actionListener="#{alunoBean.salvar()}"/>
 
 
             </ui:define>
