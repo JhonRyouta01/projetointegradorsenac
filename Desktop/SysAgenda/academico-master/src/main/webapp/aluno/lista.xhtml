@@ -1,23 +1,136 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../WEB-INF/Modelo.xhtml">
 
-            <ui:define name="top">
-                top
-            </ui:define>
-
             <ui:define name="content">
-                content lista
+                <p:fieldset legend="Pesquisa">
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column>
+                                Codigo:
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:inputText value="#{pesquisaAlunoBean.id}" style="width: 40px"/>
+                            </p:column>
+                        </p:row>
+                        
+                        <p:row>
+                            <p:column>
+                                Nome:
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{pesquisaAlunoBean.nome}" style="width: 200px"/>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Pesquisar" actionListener="#{pesquisaAlunoBean.pesquisa}" update="tabela,growl"/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:fieldset>
+                
+                <p:dataTable id="tabela" var="aluno" value="#{pesquisaAlunoBean.lista}">
+                    <p:column headerText="Código">
+                        <h:outputText value="#{aluno.id}"/>
+                    </p:column>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{aluno.nome}"/>
+                    </p:column>
+                    
+                    
+                  <p:column>
+                        <p:commandLink update="painelEdicao" process="@this" oncomplete="PF('dialog').show();">
+                            <h:graphicImage library="img" name="editt.png"/>
+                            <f:setPropertyActionListener target="#{pesquisaAlunoBean.alunoSelec}" value="#{aluno}"/>
+                        </p:commandLink>
+                    </p:column>
+                    
+                </p:dataTable>
+                
+                
+               <p:dialog header="Edição Aluno" widgetVar="dialog" modal="true">
+                    <h:form prependId="false">
+                        <p:fieldset legend="Cadastro Aluno">
+                            <p:panelGrid id="painelEdicao">
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Código:" for="codigo"/>
+                                    </p:column>
+                                    <p:column colspan="8">
+                                        <p:inputText id="codigo" value="#{pesquisaAlunoBean.alunoSelec.id}" readonly="true" size="2"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Nome:" for="nome"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText id="nome" value="#{pesquisaAlunoBean.alunoSelec.nome}" required="true"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="CPF:" for="cpf"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText id="cpf" value="#{pesquisaAlunoBean.alunoSelec.cpf}" required="true"/>
+                                    </p:column>
+                                </p:row>
+                                
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Endereço:" for="endereco"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText id="endereco" value="#{pesquisaAlunoBean.alunoSelec.endereco}" required="true"/>
+                                    </p:column>
+                                    
+                                    <p:column>
+                                        <p:outputLabel id="Nº" for="numero" />
+                                    </p:column>
+                                    <p:column>
+                                              <p:inputText id="numero" value="#{pesquisaAlunoBean.alunoSelec.numero}" required="true" size="2" />
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="Cidade" for="cidade" />
+                                    </p:column>
+                                    <p:column>
+                                              <p:inputText id="cidade" value="#{pesquisaAlunoBean.alunoSelec.cidade}" />
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="UF:" for="uf" />
+                                    </p:column>
+                                    <p:column>
+                                                <p:inputText id="uf" value="#{pesquisaAlunoBean.alunoSelec.estado}" size="2" />
+                                    </p:column>
+                                </p:row>
+                                
+                                
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Complemento:" for="complemento"/>
+                                    </p:column>
+                                    <p:column colspan="8">
+                                        <p:inputText id="complemento" value="#{pesquisaAlunoBean.alunoSelec.complemento}" readonly="true" size="100"/>
+                                    </p:column>
+                                </p:row> 
+                                
+                            </p:panelGrid> 
+                        </p:fieldset>
+                        <p:commandButton value="Salvar" actionListener="#{pesquisaAlunoBean.salvar}" ajax="false"/>
+                    </h:form>
+                </p:dialog> 
+                
             </ui:define>
 
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
+           
 
         </ui:composition>
 

@@ -2,6 +2,8 @@
 package br.com.senac.academico.dao;
 
 import br.com.senac.academico.model.Aluno;
+import java.util.List;
+import javax.persistence.Query;
 
 public class AlunoDAO extends DAO<Aluno>{
     
@@ -25,5 +27,36 @@ public class AlunoDAO extends DAO<Aluno>{
         
     }
     
+    public List<Aluno> findByFiltro(String codigo, String nome){
+        this.em = JPAUtil.getEntityManager();
+        List<Aluno> lista;
+        em.getTransaction().begin();
+    
+    
+        StringBuilder sql = new StringBuilder("from Aluno a where 1=1 ");
+        
+        if (codigo != null && !codigo.isEmpty()) {
+            sql.append(" amd a.id = :Id ");
+        }
+        
+        if (nome != null && !nome.isEmpty()) {
+            sql.append(" and a.nome like :Nome ");
+        }
+        
+        Query q = em.createQuery(sql.toString());
+        
+        if (codigo != null && !nome.isEmpty()){
+            q.setParameter("Nome", "%" + nome + "%");
+        }
+        
+        lista = q.getResultList();
+        
+        em.getTransaction().commit();
+        em.close();
+        
+        return lista;     
+        
+        
+    }
     
 }
